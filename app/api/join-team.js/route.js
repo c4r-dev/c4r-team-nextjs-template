@@ -1,7 +1,7 @@
 
-import dbConnect from '../../utils/dbConnect';
-import User from '../../models/User';
-import Team from '../../models/Team';
+import dbConnect from '../utils/dbConnect';
+import User from '../models/User';
+import Team from '../models/Team';
 
 export default async function handler(req, res) {
   const { userId, teamId } = req.body;

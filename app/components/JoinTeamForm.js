@@ -1,6 +1,6 @@
-// components/JoinTeamForm.js
-import { useState } from 'react';
-import { joinTeam } from '../utils/joinTeam';
+
+import React, { useState } from 'react';
+import { joinTeam } from '../api/utils/joinTeam';
 
 export default function JoinTeamForm({ userId }) {
   const [teamId, setTeamId] = useState('');
