@@ -1,4 +1,4 @@
-// pages/api/join-team.js
+
 import dbConnect from '../../utils/dbConnect';
 import User from '../../models/User';
 import Team from '../../models/Team';
