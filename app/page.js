@@ -6,7 +6,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleNavigation = () => {
-    router.push('/joinTeam');
+    router.push('/');
   };
 
   return (
