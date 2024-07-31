@@ -29,7 +29,7 @@ export default function Home() {
   const router = useRouter();
 
   const handleNavigation = () => {
-    fetchData()
+    fetchUsers()
     // router.push(`/inputSession?user=${inputValue}`);
   };
 
