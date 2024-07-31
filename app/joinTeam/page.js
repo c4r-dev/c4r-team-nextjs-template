@@ -1,3 +1,4 @@
+"use client"
 
 import JoinTeamForm from '../components/JoinTeamForm';
 import { useSession } from 'next-auth/client';
