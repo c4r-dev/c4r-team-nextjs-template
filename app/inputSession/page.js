@@ -29,23 +29,8 @@ export default function InputSession() {
       return;
     }
 
-    try {
-      const res = await fetch("/api/classSession", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ name, type, session }),
-      });
+    router.push(`/studentTeams?name=${name}&type=${type}&session=${session}`);
 
-      if (res.ok) {
-
-      } else {
-        throw new Error("Failed to create student session.");
-      }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -55,24 +40,20 @@ export default function InputSession() {
         <Search />
       </Suspense>
 
-      <div className="flex-container2">
-        <div>
-          {name} | {type}
-        </div>
+      <form onSubmit={handleSubmit}>
         <input
           onChange={(e) => setSession(e.target.value)}
           value={session}
-          className="border border-slate-500 px-8 py-2"
           type="text"
           placeholder="Input Session"
         />
         <div>
           <br></br>
-          <button onSubmit={handleSubmit} type="submit">
+          <button type="submit">
             JOIN SESSION and JOIN A TEAM
           </button>
         </div>
-      </div>
+      </form>
 
       <br></br>
       <Image
