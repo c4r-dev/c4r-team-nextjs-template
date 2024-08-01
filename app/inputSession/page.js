@@ -30,7 +30,7 @@ export default function InputSession() {
     }
 
     try {
-      const res = await fetch("/api/studentInput", {
+      const res = await fetch("/api/classSession", {
         method: "POST",
         headers: {
           "Content-type": "application/json",
@@ -41,7 +41,7 @@ export default function InputSession() {
       if (res.ok) {
 
       } else {
-        throw new Error("Failed to create session member.");
+        throw new Error("Failed to create student session.");
       }
     } catch (error) {
       console.log(error);

@@ -1,13 +1,13 @@
 import connectMongoDB from "../../libs/mongodb"
-import Classsession from "../../models/classsession"
+import StudentSession from "../../models/StudentSession"
 import { NextResponse } from "next/server";
 
 export async function PUT() {
   try {
     await connectMongoDB();
-    const users = await Classsession.find({});
-    return NextResponse.json(users);
+    const session = await StudentSession.find({});
+    return NextResponse.json(session);
   } catch (error) {
-    return NextResponse.json({ message: "No Users Found" });
+    return NextResponse.json({ message: "No Student Session Created" });
   }
 }
