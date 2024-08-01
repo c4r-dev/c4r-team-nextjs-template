@@ -8,14 +8,15 @@ import Raven1 from "../assets/feedback-button-1.svg"
 
 export default function InputSession() {
 
-  const [name, setName] = useState('')
-  const [type, setType] = useState('')
   const [session, setSession] = useState('')
+
+  let name = ''
+  let type = ''
 
   function Search() {
     const searchParams = useSearchParams()
-    setName(searchParams.get("name"))
-    setType(searchParams.get("type"))
+    name = searchParams.get("name")
+    type = searchParams.get("type")
     return
   }
 
