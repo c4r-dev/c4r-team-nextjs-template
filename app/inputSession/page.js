@@ -21,10 +21,6 @@ export default function InputSession() {
 
   const router = useRouter()
 
-  const onValueChange = (event) => {
-    setSession(event.target.value)
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,7 +39,7 @@ export default function InputSession() {
       });
 
       if (res.ok) {
-        
+
       } else {
         throw new Error("Failed to create session member.");
       }
@@ -59,22 +55,31 @@ export default function InputSession() {
         <Search />
       </Suspense>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-
-        <div className="flex-container2">
-          <input
-            onChange={(e) => setSession(e.target.value)}
-            value={session}
-            className="border border-slate-500 px-8 py-2"
-            type="text"
-            placeholder="Input Session"
-          />
-          <button type="submit">
-            SUBMIT RESPONSE and JOIN A TEAM
+      <div className="flex-container2">
+        <div>
+          {name} | {type}
+        </div>
+        <input
+          onChange={(e) => setSession(e.target.value)}
+          value={session}
+          className="border border-slate-500 px-8 py-2"
+          type="text"
+          placeholder="Input Session"
+        />
+        <div>
+          <br></br>
+          <button onSubmit={handleSubmit} type="submit">
+            JOIN SESSION and JOIN A TEAM
           </button>
         </div>
-      </form>
-      
+      </div>
+
+      <br></br>
+      <Image
+        priority
+        src={Raven1}
+        alt="Follow us at c4r.io"
+      />
     </>
   );
 }
