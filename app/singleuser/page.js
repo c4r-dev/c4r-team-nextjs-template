@@ -8,8 +8,8 @@ import Raven1 from "../assets/feedback-button-1.svg"
 
 export default function SingleUser() {
 
-  const [data, setData] = useState('')
   const [name, setName] = useState('')
+  const [data, setData] = useState('')
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,6 +30,7 @@ export default function SingleUser() {
           throw new Error('Network response was not ok');
         }
         const result = await response.json();
+        console.log(result)
         setData(result);
       } catch (error) {
         setError(error.message);
