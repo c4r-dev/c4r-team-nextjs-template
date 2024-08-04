@@ -25,6 +25,7 @@ export default function SingleUser() {
         const response = await fetch(`/api/singleuser/${name}`);
         const data = await response.json();
         setUser(data)
+        console.log(data)
       } catch (error) {
         alert("User Invalid", error);
       }
