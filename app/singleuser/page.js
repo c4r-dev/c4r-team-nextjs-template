@@ -8,8 +8,10 @@ import Raven1 from "../assets/feedback-button-1.svg"
 
 export default function SingleUser() {
 
+  const [data, setData] = useState('')
   const [name, setName] = useState('')
-  const [user, setUser] = useState('')
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   function Search() {
     const searchParams = useSearchParams()
@@ -19,22 +21,33 @@ export default function SingleUser() {
 
   useEffect(() => {
 
-    const fetchUsers = async () => {
-
+    const fetchData = async () => {
       try {
-        const response = await fetch(`/api/singleuser/${name}`);
-        const data = await response.json();
-        setUser(data)
+        const response = await fetch(`/api/singleuser?name=${name}`, {
+          method: 'GET'
+        });
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const result = await response.json();
+        setData(result);
       } catch (error) {
-        alert("User Invalid", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchUsers()
-
+    fetchData();
   }, []);
 
-  if (!user) return <p>No user found</p>;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
@@ -43,8 +56,8 @@ export default function SingleUser() {
       </Suspense>
 
       <div>
-        <h1>{user.name}</h1>
-        <p>{user.type}</p>
+        <h1>{data.name}</h1>
+        <p>{data.type}</p>
       </div>
 
       <br></br>
