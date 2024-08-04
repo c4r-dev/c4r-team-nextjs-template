@@ -1,4 +1,4 @@
-// pages/api/users/[id].js
+
 import dbConnect from '../../libs/mongodb';
 import User from '../../models/User';
 
