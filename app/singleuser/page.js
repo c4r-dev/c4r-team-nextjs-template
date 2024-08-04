@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState, Suspense } from 'react';
-import { useSearchParams } from 'next/router';
+import { useSearchParams } from "next/navigation";
 
 import Image from 'next/image';
 import Raven1 from "../assets/feedback-button-1.svg"
@@ -25,7 +25,6 @@ export default function SingleUser() {
         const response = await fetch(`/api/singleuser/${name}`);
         const data = await response.json();
         setUser(data)
-        console.log(data)
       } catch (error) {
         alert("User Invalid", error);
       }
