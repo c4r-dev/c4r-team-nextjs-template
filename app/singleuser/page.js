@@ -10,7 +10,6 @@ export default function SingleUser() {
 
   const [name, setName] = useState('')
   const [user, setUser] = useState('')
-  const [loading, setLoading] = useState(true)
 
   function Search() {
     const searchParams = useSearchParams()
@@ -19,21 +18,22 @@ export default function SingleUser() {
   }
 
   useEffect(() => {
-    if (name) {
-      fetch(`/api/singleuser/${name}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setUser(data.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error(error);
-          setLoading(false);
-        });
-    }
+
+    const fetchUsers = async () => {
+
+      try {
+        const response = await fetch(`/api/singleuser/${name}`);
+        const data = await response.json();
+        setUser(data)
+      } catch (error) {
+        alert("User Invalid", error);
+      }
+    };
+
+    fetchUsers()
+
   }, []);
 
-  if (loading) return <p>Loading...</p>;
   if (!user) return <p>No user found</p>;
 
   return (
