@@ -1,6 +1,5 @@
-'use client'
 
-import type { NextRequest } from 'next/server';
+import { type NextRequest } from 'next/server';
 import connectMongoDB from "../../libs/mongodb"
 import User from "../../models/User"
 
@@ -16,8 +15,8 @@ export async function GET(request: NextRequest) {
     if (!data) {
       return Response.json({ error: 'Name is not found' });
     }
-    Response.json(data);
+    return Response.json(data);
   } catch (error) {
-    Response.json({ error: 'Internal Server Error' });
+    return Response.json({ error: 'Internal Server Error' });
   }
 }
