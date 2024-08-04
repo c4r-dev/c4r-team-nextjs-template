@@ -15,7 +15,9 @@ export default function SingleUser() {
 
   function Search() {
     const searchParams = useSearchParams()
+    console.log(searchParams)
     setName(searchParams.get("name"))
+    console.log(name)
     return
   }
 
@@ -30,7 +32,6 @@ export default function SingleUser() {
           throw new Error('Network response was not ok');
         }
         const result = await response.json();
-        console.log(result)
         setData(result);
       } catch (error) {
         setError(error.message);
