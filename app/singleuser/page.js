@@ -19,6 +19,11 @@ export default function SingleUser() {
     setName(searchParams.get("name"))
     console.log(name)
 
+    return
+  }
+
+  useEffect(() => {
+
     const fetchData = async () => {
       try {
         const response = await fetch(`/api/singleuser?name=${name}`, {
@@ -37,31 +42,7 @@ export default function SingleUser() {
     };
 
     fetchData();
-
-    return
-  }
-
-  // useEffect(() => {
-
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch(`/api/singleuser?name=${name}`, {
-  //         method: 'GET'
-  //       });
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       const result = await response.json();
-  //       setData(result);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+  }, []);
 
 
 
@@ -80,6 +61,7 @@ export default function SingleUser() {
       </Suspense>
 
       <div>
+        <h1>{name}</h1>
         <h1>{data.name}</h1>
         <p>{data.type}</p>
       </div>
