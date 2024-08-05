@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from 'react';
@@ -38,9 +38,8 @@ export default function SingleUser() {
     <>
 
       <div>
-        <h1>{name}</h1>
-        <h1>{data.name}</h1>
-        <p>{data.type}</p>
+        <h1>data.name: {data.name}</h1>
+        <h1>data.type: {data.type}</h1>
       </div>
 
       <br></br>
