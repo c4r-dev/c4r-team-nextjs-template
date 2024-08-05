@@ -1,64 +1,41 @@
-'use client'
+// 'use client'
 
-import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Raven1 from "../assets/feedback-button-1.svg"
 
 export default function SingleUser() {
 
-  const [name, setName] = useState('')
+  const searchParams = useSearchParams()
   const [data, setData] = useState('')
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  function Search() {
-
-    const searchParams = useSearchParams()
-    setName(searchParams.get("name"))
-    console.log(name)
-
-    return
-  }
 
   useEffect(() => {
 
     const fetchData = async () => {
+
+      const name = searchParams.get("name")
+      console.log(name)
+
       try {
-        const response = await fetch(`/api/singleuser?name=${name}`, {
-          method: 'GET'
-        });
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+        const response = await fetch(`/api/singleuser?name=${name}`)
         const result = await response.json();
         setData(result);
       } catch (error) {
-        setError(error.message);
-      } finally {
-        setLoading(false);
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [searchParams]);
 
-
-
-  if (loading) {
+  if (!data) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (
     <>
-      <Suspense>
-        <Search />
-      </Suspense>
 
       <div>
         <h1>{name}</h1>
