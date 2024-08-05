@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Image from 'next/image';
@@ -11,38 +11,14 @@ export default function Home() {
   const router = useRouter();
 
   const [inputValue, setInputValue] = useState('');
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch('/api/users');
-        const data = await response.json();
-        setUsers(data)
-      } catch (error) {
-        alert("User Invalid", error);
-      }
-    };
-
-    fetchUsers()
-  }, [])
-
-  if (!users) return <div>Searching...</div>
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleNavigation = () => {
-
-    users.forEach((user) => {
-      if (user.name === inputValue) {
-        router.push(`/inputSession?name=${user.name}&type=${user.type}`);
-      }
-    })
-
-  };
+    router.push(`/singleuser?name=${inputValue}`);
+  }
 
   return (
     <>

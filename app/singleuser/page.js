@@ -16,7 +16,6 @@ export default function SingleUser() {
     const fetchData = async () => {
 
       const name = searchParams.get("name")
-      console.log(name)
 
       try {
         const response = await fetch(`/api/singleuser?name=${name}`)
