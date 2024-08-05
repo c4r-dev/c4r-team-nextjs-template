@@ -1,21 +1,25 @@
 'use client'
 
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Raven1 from "../assets/feedback-button-1.svg"
 
 export default function SingleUser() {
 
-  const searchParams = useSearchParams()
+  const [name, setName] = useState('')
+
+  const getParams = () => {
+    const searchParams = useSearchParams()
+    setName(searchParams.get("name"))
+  }
+
   const [data, setData] = useState('')
 
   useEffect(() => {
 
     const fetchData = async () => {
-
-      const name = searchParams.get("name")
 
       try {
         const response = await fetch(`/api/singleuser?name=${name}`)
@@ -27,7 +31,7 @@ export default function SingleUser() {
     };
 
     fetchData();
-  }, [searchParams]);
+  }, [name]);
 
   if (!data) {
     return <div>Loading...</div>;
@@ -35,6 +39,9 @@ export default function SingleUser() {
 
   return (
     <>
+      <Suspense fallback={<div>Loading...</div>}>
+        {getParams}
+      </Suspense>
 
       <div>
         <h1>data.name: {data.name}</h1>
