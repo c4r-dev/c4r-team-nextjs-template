@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import Raven1 from "../assets/feedback-button-1.svg"
