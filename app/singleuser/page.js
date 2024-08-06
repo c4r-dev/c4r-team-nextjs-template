@@ -13,7 +13,6 @@ export default function SingleUser() {
   const GetParams = () => {
     const searchParams = useSearchParams()
     setName(searchParams.get("name"))
-    console.log(name)
   }
 
   const [data, setData] = useState('')
