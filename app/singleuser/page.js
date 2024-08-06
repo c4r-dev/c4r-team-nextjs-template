@@ -10,7 +10,7 @@ export default function SingleUser() {
 
   const [name, setName] = useState('')
 
-  const getParams = () => {
+  const GetParams = () => {
     const searchParams = useSearchParams()
     setName(searchParams.get("name"))
   }
@@ -40,7 +40,7 @@ export default function SingleUser() {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        {getParams}
+        {GetParams}
       </Suspense>
 
       <div>
